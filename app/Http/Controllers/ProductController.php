@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProductModel;
 
 class ProductController extends Controller
 {
@@ -28,6 +29,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        ProductModel::create($data);
+        return redirect('products');
     }
 
     /**
