@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Models\ProductModel;
 
 class ProductController extends Controller
 {
@@ -13,6 +13,8 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $products = Product::all();
+        return view('product.index')->with('products',$products);
     }
 
     /**
@@ -21,6 +23,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('product.create');
     }
 
     /**
@@ -30,8 +33,9 @@ class ProductController extends Controller
     {
         //
         $data = $request->all();
-        ProductModel::create($data);
-        return redirect('products');
+        Product::create($data);
+        // return redirect('products');
+        return $data;
     }
 
     /**
